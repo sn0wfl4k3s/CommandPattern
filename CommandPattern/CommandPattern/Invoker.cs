@@ -1,5 +1,6 @@
-﻿using CommandPattern.Comandos;
+﻿using System;
 using System.Collections.Generic;
+using CommandPattern.Comandos;
 
 namespace CommandPattern
 {
@@ -13,7 +14,14 @@ namespace CommandPattern
 
         public static void Invoke (string comando)
         {
-            comandos[comando].Execute();
+            try
+            {
+                comandos[comando].Execute();
+            }
+            catch
+            {
+                throw new Exception($"Comando {comando} não encontrado!");
+            }
         }
     }
 }
